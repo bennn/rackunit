@@ -95,7 +95,8 @@
                 #:expression [expression 'unknown])
     (define infos
       (list/if (make-check-name 'pub)
-               (make-check-location location)
+               (and (not (memf check-location? (current-check-info)))
+                    (make-check-location location))
                (make-check-expression expression)
                (make-check-params (list formal ...))
                (and message (make-check-message message))))
